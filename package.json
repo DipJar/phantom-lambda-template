@@ -15,6 +15,7 @@
   "homepage": "https://github.com/justengland/phantom-lambda-template",
   "dependencies": {
     "mocha": "^3.2.0",
+    "moment": "^2.18.1",
     "phantomjs-prebuilt": "^2.1.14"
   },
   "devDependencies": {

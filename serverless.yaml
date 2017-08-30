@@ -8,7 +8,7 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             Handler: index.handler
-            Runtime: nodejs4.3
+            Runtime: nodejs6.10
             Description: Some sweet lambda action
             CodeUri: .
 Outputs:
