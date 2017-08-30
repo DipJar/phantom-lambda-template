@@ -1,9 +1,7 @@
 {
-    "params": {
-        "querystring": {
-            "url": "http://www.dipjar.com",
-            "key": "facebook",
-            "ownerId": "TEST"
-        }
+    "queryStringParameters": {
+        "url": "http://www.dipjar.com",
+        "key": "facebook",
+        "ownerId": "TEST"
     }
 }

@@ -4,11 +4,11 @@ const moment = require('moment');
 const fs = require('fs');
 
 exports.handler = function(event, context, callback) {
-    console.log('I am on master');
-    var url = decodeURIComponent(event.params.querystring.url);
-    var key = decodeURIComponent(event.params.querystring.key);
-    var id = event.params.querystring.ownerId || 0;
-    var output = id + '-' + key + '-' + moment().format('YYYYMMDD') + '-snapshot.png';
+    console.log('webrender', event);
+    var url = decodeURIComponent(event.queryStringParameters.url);
+    var key = decodeURIComponent(event.queryStringParameters.key);
+    var id = event.queryStringParameters.ownerId || 0;
+    var output = id + '-' + key + '-' + moment().format('YYYYMMDDHHmmss') + '-snapshot.png';
     var outputPath = '/tmp/' + output;
     var size = event.size || '1200px';
     var bucket = event.bucket || 'dipjar-kyc-repo';
