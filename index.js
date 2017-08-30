@@ -9,9 +9,10 @@ exports.handler = function(event, context, callback) {
     var key = decodeURIComponent(event.params.querystring.key);
     var id = event.params.querystring.ownerId || 0;
     var output = id + '-' + key + '-' + moment().format('YYYYMMDD') + '-snapshot.png';
+    var outputPath = '/tmp/' + output;
     var size = event.size || '1200px';
     var bucket = event.bucket || 'dipjar-kyc-repo';
-    var phantom = phantomjs.exec('rasterize.js', url , output, size);
+    var phantom = phantomjs.exec('rasterize.js', url , outputPath, size);
 
     phantom.stdout.on('data', function(buf) {
         console.log('[STR] stdout "%s"', String(buf));
@@ -24,7 +25,7 @@ exports.handler = function(event, context, callback) {
     });
 
     phantom.on('exit', code => {
-        var readStream = fs.createReadStream(output);
+        var readStream = fs.createReadStream(outputPath);
         readStream.on('open', function() {
             var s3obj = new AWS.S3({params: {Bucket: bucket}});
             s3obj.upload({Body: readStream, Key: output}, function (err, data) {
